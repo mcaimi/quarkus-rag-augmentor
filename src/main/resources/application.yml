@@ -1,0 +1,41 @@
+"%production":
+  llm_interactive_model:
+    chat-model:
+      provider: "ollama"
+
+  quarkus:
+    langchain4j:
+      ollama:
+        llm_interactive_model:
+          base-url: "http://prod.llama.api"
+          timeout: 60
+          chat-model:
+            model-id: "llama2:latest"
+          embedding-model:
+            model-id: "nomic-embed-text:latest"
+      chroma:
+        devservices:
+          enabled: false
+        url: "http://prod.chromadb.api"
+        collection-name: "redhat"
+
+"%dev":
+  llm_interactive_model:
+    chat-model:
+      provider: "ollama"
+
+  quarkus:
+    langchain4j:
+      ollama:
+        llm_interactive_model:
+          base-url: "http://localhost:11434"
+          timeout: 60
+          chat-model:
+            model-id: "llama2:latest"
+          embedding-model:
+            model-id: "nomic-embed-text:latest"
+      chroma:
+        devservices:
+          enabled: false
+        url: "http://192.168.64.23:8080"
+        collection-name: "redhat"
