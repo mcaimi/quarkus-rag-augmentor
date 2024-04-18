@@ -1,12 +1,12 @@
 package com.redhat.rag_augmentor;
 
 import io.quarkiverse.langchain4j.RegisterAiService;
-import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Singleton;
 import dev.langchain4j.service.MemoryId;
 import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.UserMessage;
 
-@ApplicationScoped // required for websocket interface
+@Singleton
 @RegisterAiService(modelName="llm_interactive_model", retrievalAugmentor=RagAugmentor.class)
 public interface AugmentedOllamaService {
 
@@ -17,8 +17,6 @@ public interface AugmentedOllamaService {
     Prioritize responses in the same language as the request.
     """)
 
-    @UserMessage("""
-    {userMsg}
-    """)
-    String chat(@MemoryId Object session, String userMsg);
+    String chat(@MemoryId Object session, @UserMessage String userMsg);
+    String chat(@UserMessage String userMsg);
 }

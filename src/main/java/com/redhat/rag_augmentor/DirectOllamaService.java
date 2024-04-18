@@ -1,12 +1,12 @@
 package com.redhat.rag_augmentor;
 
 import io.quarkiverse.langchain4j.RegisterAiService;
-import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Singleton;
 import dev.langchain4j.service.MemoryId;
 import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.UserMessage;
 
-@ApplicationScoped // required for websocket interface
+@Singleton // required for websocket interface
 @RegisterAiService(modelName="llm_interactive_model")
 public interface DirectOllamaService {
 

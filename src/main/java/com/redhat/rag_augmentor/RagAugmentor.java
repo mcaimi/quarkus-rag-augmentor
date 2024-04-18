@@ -8,31 +8,24 @@ import dev.langchain4j.rag.content.retriever.EmbeddingStoreContentRetriever;
 import io.quarkiverse.langchain4j.chroma.ChromaEmbeddingStore;
 
 import java.util.function.Supplier;
-import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 
 @Singleton // required for websocket operation
 public class RagAugmentor implements Supplier<RetrievalAugmentor> {
 
-    @Inject
-    ChromaEmbeddingStore store;
-
-    @Inject
-    EmbeddingModel model;
-
-    private final EmbeddingStoreContentRetriever retriever;
+    private EmbeddingStoreContentRetriever retriever;
 
     RagAugmentor(ChromaEmbeddingStore store, EmbeddingModel model) {
-        retriever = EmbeddingStoreContentRetriever.builder()
+        this.retriever = EmbeddingStoreContentRetriever.builder()
                   .embeddingModel(model)
                   .embeddingStore(store)
-                  .maxResults(20)
+                  .maxResults(40)
                   .build();
     }
 
     @Override
     public RetrievalAugmentor get() {
         return DefaultRetrievalAugmentor.builder()
-          .contentRetriever(retriever).build();
+          .contentRetriever(this.retriever).build();
     }
 }
