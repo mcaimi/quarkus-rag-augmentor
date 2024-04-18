@@ -6,13 +6,13 @@
   quarkus:
     langchain4j:
       ollama:
+        embedding-model:
+          model-id: "mistral:latest"
         llm_interactive_model:
           base-url: "http://prod.llama.api"
           timeout: 60
           chat-model:
-            model-id: "llama2:latest"
-          embedding-model:
-            model-id: "nomic-embed-text:latest"
+            model-id: "mistral:latest"
       chroma:
         devservices:
           enabled: false
@@ -27,13 +27,14 @@
   quarkus:
     langchain4j:
       ollama:
+        base-url: "http://localhost:11434"
+        embedding-model:
+          model-id: "mistral:latest"
         llm_interactive_model:
-          base-url: "http://localhost:11434"
+          base-url: "http://localhost:8081"
           timeout: 60
           chat-model:
-            model-id: "llama2:latest"
-          embedding-model:
-            model-id: "nomic-embed-text:latest"
+            model-id: "mistral:latest"
       chroma:
         devservices:
           enabled: false
