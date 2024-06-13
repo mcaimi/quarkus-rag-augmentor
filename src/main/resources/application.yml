@@ -6,11 +6,12 @@
   quarkus:
     langchain4j:
       ollama:
+        base-url: "http://localhost:11434"
         embedding-model:
           model-id: "mistral:latest"
         llm_interactive_model:
           base-url: "http://prod.llama.api"
-          timeout: 60
+          timeout: 600
           chat-model:
             model-id: "mistral:latest"
       chroma:
@@ -31,12 +32,12 @@
         embedding-model:
           model-id: "mistral:latest"
         llm_interactive_model:
-          base-url: "http://localhost:8081"
+          base-url: "http://localhost:11434"
           timeout: 60
           chat-model:
             model-id: "mistral:latest"
       chroma:
         devservices:
           enabled: false
-        url: "http://192.168.64.23:8080"
+        url: "http://localhost:12345"
         collection-name: "redhat"
